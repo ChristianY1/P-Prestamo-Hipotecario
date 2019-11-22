@@ -1,0 +1,15 @@
+
+(deftemplate cliente
+	(slot nombre)
+	(slot edad)
+)
+(assert (cliente (nombre andres)(edad 78)))
+(assert (cliente (nombre antonia)(edad 10)))
+(defrule verificar-edad
+	(cliente (nombre ?a)(edad ?n))
+	(or (test(?n =< 18))
+	    (test(?n >= 77))
+	)
+=>
+(printout t "no se le puede conceder el credito debido a su edad:" ?a  crlf)
+)
